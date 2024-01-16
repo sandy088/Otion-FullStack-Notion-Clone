@@ -1,9 +1,38 @@
-import React from 'react'
+"use client";
+import { Button } from "@/components/ui/button";
+import { useUser } from "@clerk/clerk-react";
+import { PlusCircle } from "lucide-react";
+import Image from "next/image";
+import React from "react";
 
-const page = () => {
+const Page = () => {
+  const { user } = useUser();
+  console.log(user)
   return (
-    <div>Documents</div>
-  )
-}
+    <div className=" h-full flex flex-col items-center justify-center space-y-4">
+      <Image
+        src={"/empty.png"}
+        height={300}
+        width={300}
+        alt="empty"
+        className=" dark:hidden"
+      />
+      <Image
+        src={"/empty.png"}
+        height={300}
+        width={300}
+        alt="empty"
+        className=" dark:block hidden"
+      />
+      <h2 className=" text-lg font-medium">
+        Welcome to {user?.firstName !== null? user?.firstName: 'your'}&apos;s Otion
+      </h2>
+      <Button>
+        <PlusCircle className=" h-4 w-4 mr-2"/>
+        Create a note
+      </Button>
+    </div>
+  );
+};
 
-export default page
+export default Page;
