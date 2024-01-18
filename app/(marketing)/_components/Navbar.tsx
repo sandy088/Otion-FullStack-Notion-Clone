@@ -41,7 +41,7 @@ const Navbar = () => {
         {isAuthenticated && (
           <>
             <Button variant={"ghost"} size={"sm"} asChild>
-              <Link href={"/dashboard"}>Enter Otion</Link>
+              <Link href={"/documents"}>Enter Otion</Link>
             </Button>
             <UserButton afterSignOutUrl="/"/>
           </>
