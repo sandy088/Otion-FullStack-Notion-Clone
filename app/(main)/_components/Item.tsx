@@ -32,7 +32,7 @@ interface ItemProps {
   level?: number;
   onExpand?: () => void;
   label: string;
-  onclick: () => void;
+  onclick?: () => void;
   icon: LucideIcon;
   documentIcon?: string;
 }
@@ -91,9 +91,7 @@ export const Item = ({
   const ChevronIcon = expanded ? ChevronDown : ChevronRight;
   return (
     <div
-      onClick={() => {
-        onclick();
-      }}
+      onClick={onclick}
       role="button"
       style={{ paddingLeft: level ? `${level * 12 + 12}px` : "12px" }}
       className={cn(
@@ -174,7 +172,7 @@ Item.Skeleton = function ItemSkeleton({ level }: { level?: number }) {
   return (
     <div
       style={{
-        paddingLeft: level ? `${level * 12 + 25}` : "12px",
+        paddingLeft: level ? `${(level * 12) + 25}px` : "12px",
       }}
       className=" flex gap-x-2 py-[3px]"
     >
