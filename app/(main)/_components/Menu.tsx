@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Trash } from "lucide-react";
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface MenuProps {
   documentId: Id<"documents">;
@@ -61,3 +62,10 @@ export const Menu = ({ documentId }: MenuProps) => {
     </DropdownMenu>
   );
 };
+
+
+Menu.Skeleton = function MenuSkeleton(){
+  return(
+    <Skeleton className=" h-7 w-7"/>
+  )
+}
