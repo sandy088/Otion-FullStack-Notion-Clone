@@ -13,7 +13,7 @@ interface EditorProps {
 }
 
 const Editor = ({ initialContent, onChange, editable }: EditorProps) => {
-  const resolvedTheme = useTheme();
+  const { resolvedTheme } = useTheme();
   const {edgestore} = useEdgeStore();
   const handleUpload= async (file: File) => {
     const response = await edgestore.publicFiles.upload({file});
@@ -34,7 +34,7 @@ const Editor = ({ initialContent, onChange, editable }: EditorProps) => {
   return (
     <BlockNoteView
       editor={editor}
-      theme={resolvedTheme.theme === "dark" ? "dark" : "light"}
+      theme={resolvedTheme === "dark" ? "dark" : "light"}
     />
   );
 };
