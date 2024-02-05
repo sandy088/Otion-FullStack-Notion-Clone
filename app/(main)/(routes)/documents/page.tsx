@@ -5,16 +5,20 @@ import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
 import { PlusCircle } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 
 const Page = () => {
+  const router = useRouter();
   const { user } = useUser();
   const create = useMutation(api.documents.create);
 
   const onCreate = () => {
     const promise = create({
       title: "New Document",
+    }).then((documentId) => {
+      router.push(`/documents/${documentId}`);
     });
 
     toast.promise(promise, {
@@ -45,7 +49,7 @@ const Page = () => {
         Welcome to {user?.firstName !== null ? user?.firstName : "your"}&apos;s
         Otion
       </h2>
-      <Button onClick={onCreate} >
+      <Button onClick={onCreate}>
         <PlusCircle className=" h-4 w-4 mr-2" />
         Create a note
       </Button>

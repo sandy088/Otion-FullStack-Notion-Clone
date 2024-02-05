@@ -56,7 +56,7 @@ export const Item = ({
   const onArchive = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
     if (!id) return;
-    const promise = archive({ id: id as Id<"documents"> });
+    const promise = archive({ id: id as Id<"documents"> }).then(()=>{router.push("/documents")});
     toast.promise(promise, {
       loading: "Archiving document...",
       success: "Document archived!",
@@ -79,7 +79,7 @@ export const Item = ({
       parentDocument: id as Id<"documents">,
     }).then((documentId) => {
       if (!expanded) onExpand?.();
-      // router.push(`/documents/${documentId}`);
+      router.push(`/documents/${documentId}`);
     });
     toast.promise(promise, {
       loading: "Creating document...",
